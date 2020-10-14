@@ -1,0 +1,19 @@
+import fs from 'fs';
+import path from 'path';
+
+const loadContent = async () => {
+  const filePath = path.resolve(process.cwd(), 'src/data/content.txt');
+  return fs.readFileSync(filePath, 'utf-8');
+};
+
+export default function Index({ content }) {
+  return <p>{content}</p>;
+}
+
+export async function getStaticProps() {
+  const content = await loadContent();
+
+  return {
+    props: { content },
+  };
+}
