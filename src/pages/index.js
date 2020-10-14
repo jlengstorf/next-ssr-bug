@@ -6,8 +6,13 @@ const loadContent = async () => {
   return fs.readFileSync(filePath, 'utf-8');
 };
 
+const transformContent = (text) => {
+  return text.replace(/content/, 'boops');
+};
+
 export default function Index({ content }) {
-  return <p>{content}</p>;
+  const replaced = transformContent(content);
+  return <p>{replaced}</p>;
 }
 
 export async function getStaticProps() {
